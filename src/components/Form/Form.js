@@ -8,13 +8,14 @@ class Form extends Component {
     this.state = {
       img: "",
       productName: "",
-      Price: ""
+      price: ""
     };
     this.handleImageChange = this.handleImageChange.bind(this);
     this.handleProductName = this.handleProductName.bind(this);
-    this.handlePriceChange = this.handlePriceChange.bind(this);
+    this.handlepriceChange = this.handlepriceChange.bind(this);
     this.handleCancleButton = this.handleCancleButton.bind(this);
-    this.submitInventory = this.submitInventory.bind(this);
+    this.editProduct = this.editProduct.bind(this);
+    this.handlePost = this.handlePost.bind(this);
   }
   handleImageChange = e => {
     this.setState({ img: e.target.value });
@@ -22,28 +23,22 @@ class Form extends Component {
   handleProductName = e => {
     this.setState({ productName: e.target.value });
   };
-  handlePriceChange = e => {
-    this.setState({ Price: e.target.value });
+  handlepriceChange = e => {
+    this.setState({ price: e.target.value });
   };
   handleCancleButton = e => {
     e.preventdefault();
     this.setState({
       img: "",
       productName: "",
-      Price: ""
+      price: ""
     });
   };
-  submitInventory() {
-    this.setState({
-      img: "",
-      productName: "",
-      Price: ""
-    });
-  }
+
   handlePost() {
     axios
       .post("/api/inventory", {
-        name: this.state.name,
+        name: this.state.productName,
         price: this.state.price,
         img: this.state.img
       })
@@ -51,17 +46,22 @@ class Form extends Component {
         this.setState({ inventoryList: response.data });
       });
   }
+  editProduct(id) {
+    axios.put(`/api/inventory/${id}`, {}).catch(error => console.log(error));
+  }
   render() {
+    console.log(this.state.productName);
+
     return (
       <form className="form">
         <label>Image URL</label>
         <input onChange={this.handleImageChange} />
-        <lable>Product Name</lable>
+        <label>Product Name</label>
         <input onChange={this.handleProductName} />
-        <label>Price</label>
-        <input onChange={this.handlePriceChange} />
+        <label>price</label>
+        <input onChange={this.handlepriceChange} />
         <button onClick={this.handleCancleButton}>Cancel</button>
-        <button onSubmit={this.submitInventory}>Add to Inventory</button>
+        <button onClick={this.handlePost}>Add to Inventory</button>
       </form>
     );
   }

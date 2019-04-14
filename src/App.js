@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { HashRouter, Switch, Route } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import Dashboard from "./components/Dashboard/Dashboard";
@@ -11,22 +12,21 @@ class App extends Component {
     super();
 
     this.state = {
-      inventoryList: []
+      selectProduct: {},
+      edit: false
     };
-    this.componentDidMount = this.componentDidMount.bind(this);
+    this.selectProduct = this.selectProduct.bind(this);
   }
-  componentDidMount() {
-    axios.get("/api/inventory").then(response => {
-      this.setState({ inventoryList: response.data });
-    });
+  selectProduct(product) {
+    this.setState({ selectProduct: product });
   }
 
   render() {
     return (
       <main>
-        <Dashboard {...this.state} />
         <Header />
         <Form handlePost={this.componentDidMount} />
+        <Dashboard {...this.state} getProducts={this.getProducts} />
       </main>
     );
   }
