@@ -27,7 +27,7 @@ class Form extends Component {
     this.setState({ price: e.target.value });
   };
   handleCancleButton = e => {
-    e.preventdefault();
+    e.preventDefault();
     this.setState({
       img: "",
       productName: "",

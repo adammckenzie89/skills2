@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { HashRouter, Switch, Route } from "react-router-dom";
+import { HashRouter, Switch, Route, Link } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Form from "./components/Form/Form";
 import Header from "./components/Header/Header";
+import routes from "./routes";
 import axios from "axios";
 
 class App extends Component {
@@ -23,11 +24,17 @@ class App extends Component {
 
   render() {
     return (
-      <main>
+      <HashRouter>
+        {/* //{" "} */}
+        {/* <Form handlePost={this.componentDidMount} />
+        // <Dashboard {...this.state} getProducts={this.getProducts} /> */}
+
+        {/* <Link to="/">Dashboard</Link>
+        <Link to="/add">Add Inventory</Link> */}
+
         <Header />
-        <Form handlePost={this.componentDidMount} />
-        <Dashboard {...this.state} getProducts={this.getProducts} />
-      </main>
+        {routes}
+      </HashRouter>
     );
   }
 }
