@@ -25,13 +25,6 @@ class App extends Component {
   render() {
     return (
       <HashRouter>
-        {/* //{" "} */}
-        {/* <Form handlePost={this.componentDidMount} />
-        // <Dashboard {...this.state} getProducts={this.getProducts} /> */}
-
-        {/* <Link to="/">Dashboard</Link>
-        <Link to="/add">Add Inventory</Link> */}
-
         <Header />
         {routes}
       </HashRouter>

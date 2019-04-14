@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 class Form extends Component {
@@ -61,7 +62,9 @@ class Form extends Component {
         <label>price</label>
         <input onChange={this.handlepriceChange} />
         <button onClick={this.handleCancleButton}>Cancel</button>
-        <button onClick={this.handlePost}>Add to Inventory</button>
+        <Link to="/">
+          <button onClick={this.handlePost}>Add to Inventory</button>
+        </Link>
       </form>
     );
   }
